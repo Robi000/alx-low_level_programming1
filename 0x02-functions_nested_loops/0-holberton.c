@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <main.h>
+
 
 /**
  * Write a program that prints Holberton, followed by a new line.t

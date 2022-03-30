@@ -1,56 +1,56 @@
 #include "search_algos.h"
-
 /**
- * binary_search - binary search implementation
- * @array: string
- * @size: size_t
- * @value: value
- * Return: int, index of the value
+ * binary_search - using binary search algorithm, searches through an int
+ * array for a value
+ * @array: pointer to the first element of the array to search in
+ * @size: the number of elements in the array
+ * @value: the value to search for in @array
+ *
+ * Return: The first index where value is located, -1 otherwise
  */
-
 int binary_search(int *array, size_t size, int value)
 {
-size_t i;
-int left = 0;
-int right = size;
-int middle;
-if (array == NULL)
+
+	int lo = 0, hi = (int) size - 1, mid;
+
+	for (mid = (lo + hi) / 2; hi - lo > -1; mid = (lo + hi) / 2)
+	{
+		print_array(array, lo, hi);
+		if (array[mid] == value)
+		{
+			if (hi - lo == 1)
+				print_array(array, lo, hi);
+			return (mid);
+		}
+
+		if (value < array[mid])
+			hi = mid - 1;
+		else if (value > array[mid])
+			lo = mid + 1;
+		else
+			lo = mid;
+	}
+
 	return (-1);
-
-for (i = 0; left < right; i++)
-{
-	printf("Searching in array: ");
-	print_array(array, left, right);
-	middle = (left + right) / 2;
-
-	if (array[middle] < value)
-		left = middle + 1;
-	else if (array[middle] > value)
-		right = middle;
-	else
-		return (middle);
 }
-return (-1);
-}
-
 
 /**
- * print_array - print `n` elements of an array of integers
- * @a: int array pointer to print
- * @i: int, start index
- * @j: int, end index
- * Description: Numbers must be separated by comma and space.
- * Numbers should be displayed in the same order they are stored in array.
- * You can only use _putchar to print.
+ * print_array - prints the values of an array starting from lower bound upto
+ * upper bound
+ * @array: array of ints to be displayed
+ * @lower_bound: the first element's index to be printed
+ * @upper_bound: the last element's index to be printed
  */
-
-void print_array(int *a, int i, int j)
+void print_array(int *array, int lower_bound, int upper_bound)
 {
+	int i;
 
-	for (; i < j; i++)
+	printf("Searching in array: ");
+	for (i = lower_bound; i <= upper_bound; i++)
 	{
-		printf("%d", a[i]);
-		if (i < j - 1)
+		printf("%i", array[i]);
+
+		if (i != upper_bound)
 			printf(", ");
 	}
 	printf("\n");

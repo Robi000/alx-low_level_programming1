@@ -1,21 +1,11 @@
-#include "search_algos.h"
+#ifndef SEARCH_ALGOS
+#define SEARCH_ALGOS
 
-int linear_search(int *array, size_t size, int value)
-{
-    int i = 0;
-    while (size > 0)
-    {
-        if (array[i] != value)
-        {
-            printf("Value checked array[%d] = [%d]\n", i, array[i]);
-        }
-        else
-        {
-            printf("Value checked array[%d] = [%d]\n", i, value);
-            return i;
-        }
-        i++;
-        size--;
-    }
-    return -1;
-}
+#include "stdio.h"
+
+int linear_search(int *array, size_t size, int value);
+int binary_search(int *array, size_t size, int value);
+
+void print_array(int *a, int i, int j);
+
+#endif
